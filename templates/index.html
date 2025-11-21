@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Credit Prediction</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #eef1f5;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 40px auto;
+            padding: 20px;
+            display: flex;
+            gap: 30px;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            width: 50%;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #bbb;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+            transition: 0.2s ease;
+        }
+
+        input:focus {
+            border-color: #0066ff;
+            box-shadow: 0 0 5px rgba(0,102,255,0.3);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #0066ff;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.2s ease;
+        }
+
+        button:hover {
+            background: #0050cc;
+        }
+
+        .result-box {
+            padding: 25px;
+            border-radius: 12px;
+            font-size: 20px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .good {
+            background: #d2f6df;
+            color: #0c8a3c;
+            border: 2px solid #59c97d;
+        }
+
+        .bad {
+            background: #ffe0e3;
+            color: #d02121;
+            border: 2px solid #ff6b6b;
+        }
+
+        .placeholder {
+            padding: 25px;
+            background: #f2f4f7;
+            border-radius: 12px;
+            color: #777;
+            text-align: center;
+            font-size: 18px;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- LEFT: FORM SECTION -->
+    <div class="card">
+        <h2>Enter Customer Details</h2>
+        <form method="post">
+
+            <div class="input-group">
+                <label>Age</label>
+                <input type="number" name="Age" required>
+            </div>
+
+            <div class="input-group">
+                <label>Open Credit Lines</label>
+                <input type="number" name="NumberOfOpenCreditLinesAndLoans" required>
+            </div>
+
+            <div class="input-group">
+                <label>Real Estate Loans</label>
+                <input type="number" name="NumberRealEstateLoansOrLines" required>
+            </div>
+
+            <div class="input-group">
+                <label>Monthly Income</label>
+                <input type="number" name="MonthlyIncome_replaced" required>
+            </div>
+
+            <div class="input-group">
+                <label>Gender (1 = Male, 0 = Female)</label>
+                <input type="number" name="Gender_Male" required>
+            </div>
+
+            <div class="input-group">
+                <label>Region - East</label>
+                <input type="number" name="Region_East" required>
+            </div>
+
+            <div class="input-group">
+                <label>Region - North</label>
+                <input type="number" name="Region_North" required>
+            </div>
+
+            <div class="input-group">
+                <label>Region - South</label>
+                <input type="number" name="Region_South" required>
+            </div>
+
+            <div class="input-group">
+                <label>Region - West</label>
+                <input type="number" name="Region_West" required>
+            </div>
+
+            <div class="input-group">
+                <label>House Ownership</label>
+                <input type="number" name="Rented_OwnHouse_con" required>
+            </div>
+
+            <div class="input-group">
+                <label>Occupation</label>
+                <input type="number" name="Occupation_con" required>
+            </div>
+
+            <div class="input-group">
+                <label>Education</label>
+                <input type="number" name="Education_con" required>
+            </div>
+
+            <button type="submit">Predict</button>
+        </form>
+    </div>
+
+    <!-- RIGHT: RESULT SECTION -->
+    <div class="card">
+        <h2>Prediction Result</h2>
+
+        {% if prediction %}
+        <div class="result-box
+            {% if prediction == 'Good Customer' %}good
+            {% else %}bad{% endif %}
+        ">
+            {{ prediction }}
+        </div>
+        {% else %}
+        <div class="placeholder">
+            Prediction will appear here...
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+
+</body>
+</html>
